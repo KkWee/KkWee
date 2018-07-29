@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>FrameModel · KeWen&#39;blog</title>
+    <title>MutableCopy · KeWen&#39;blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -207,7 +207,7 @@
                 <a href="/" >kewen&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">FrameModel</a>
+                <a href="#" class="post-name">MutableCopy</a>
             </div>
     </div>
     
@@ -239,7 +239,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            FrameModel
+            MutableCopy
             <!-- 404 -->
             
         </h1>
@@ -256,20 +256,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Model">Model</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">431</span> / Reading time: <span class="post-count">2 min</span></span>
+                        <span>Word count: <span class="post-count">1,184</span> / Reading time: <span class="post-count">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2017/06/29</span>
+                    <span class="post-intro-time">2018/07/27</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -392,19 +386,45 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>Frame Model</strong></p>
-<p> 通常在实际开发中，会用到数据模型，但是数据模型并不是万能的，数据模型并不能很好的和view进行交互。<br> 比如UITableview展示数据模型中的数据，而由于数据模型中的数据并不是固定的，所以又要用到自定义的cell，<br> cell中的高度和其他的数据是不固定的，所以在controller中不能很好的展示。<br> 解决方法是增加一个frame模型，在frame中包含一个数据模型。在懒加载中就存的是包含数据模型的frame模型。</p>
- <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"> /**</span><br><span class="line"> *  计算文字尺寸</span><br><span class="line"> *</span><br><span class="line"> *  @param text    需要计算尺寸的文字</span><br><span class="line"> *  @param font    文字的字体</span><br><span class="line"> *  @param maxSize 文字的最大尺寸</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line">- (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *attrs = @&#123;NSFontAttributeName : font&#125;;</span><br><span class="line">    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Data Model</span><br><span class="line"> @interface Status : NSObject</span><br><span class="line"> @property (nonatomic, copy) NSString *text; // 内容</span><br><span class="line"> @property (nonatomic, copy) NSString *icon; // 头像</span><br><span class="line"> @property (nonatomic, copy) NSString *name; // 昵称</span><br><span class="line"> @property (nonatomic, copy) NSString *picture; // 配图</span><br><span class="line"> @property (nonatomic, assign) BOOL vip; </span><br><span class="line"> - (instancetype)initWithDict:(NSDictionary *)dict;</span><br><span class="line"> + (instancetype)statusWithDict:(NSDictionary *)dict;</span><br><span class="line"></span><br><span class="line">frame Model</span><br><span class="line">@interface StatusFrame : NSObject</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  头像的frame</span><br><span class="line">*/</span><br><span class="line">@property (nonatomic, assign, readonly) CGRect iconF;</span><br><span class="line">/**</span><br><span class="line"> *  昵称的frame</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign, readonly) CGRect nameF;</span><br><span class="line">/**</span><br><span class="line"> *  会员图标的frame</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign, readonly) CGRect vipF;</span><br><span class="line">/**</span><br><span class="line"> *  正文的frame</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign, readonly) CGRect textF;</span><br><span class="line">/**</span><br><span class="line"> *  配图的frame</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign, readonly) CGRect pictureF;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  cell的高度</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign, readonly) CGFloat cellHeight;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) Status *status; 包含的数据模型。</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>在setStatus中，设置frame。<br>设置自定义cell时，要把控件放在contentView中。这样设置控件的frame时，会比较方便。</p>
+        <h4 id="MutableCopy"><a href="#MutableCopy" class="headerlink" title="MutableCopy"></a>MutableCopy</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *dict = [[NSDictionary alloc] init];</span><br><span class="line">NSMutableDictionary *mutableDict = dict.mutableCopy;</span><br><span class="line">这篇文章想研究一下mutableCopy和它相关的知识。</span><br></pre></td></tr></table></figure>
+<h5 id="不可修改对象"><a href="#不可修改对象" class="headerlink" title="##不可修改对象"></a>##不可修改对象</h5><p>来看一段代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray *)odds &#123;</span><br><span class="line">	NSMutableArray *odds = [[NSMutableArray alloc] init];</span><br><span class="line">	int i = 1;</span><br><span class="line">	while ([odds count] &lt; 30) &#123;</span><br><span class="line">		[odds addObject:[NSNumber numberWithInt:i]];</span><br><span class="line">		i += 2;</span><br><span class="line">	&#125;</span><br><span class="line">	return odds;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然对外声明的类型是NSArray，但实际创建的是NSMutableArray对象。odds方法返回的是不可修改的NSArray对象。它增加或者删除对象时，编译器还是会发出警告。不过我们可以通过下面的performSelector方法验证odds方法返回的对象是不是NSMutableArray。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[odds performSelector:@selector(removeObject:) withObject:@(9)];</span><br><span class="line">NSLog(@&quot;%@&quot;, odds);</span><br></pre></td></tr></table></figure>
+<p>通过打印结果，确实对odds执行了removeObject:方法，而NSArray对象是不可以执行removeObject:方法的。</p>
+<p>苹果建议我们使用不可修改的collection，可以节约内存提高性能，因为它无需拷贝。而对于可修改的对象，则可能发生这么一种情况：程序中的其他代码可能在你使用这个可修改对象的时候修改它的内容。最近在工作中就遇到了这样一种情况，没有mutableCopy一个数组。为了避免这样的情况发生，据需要复制一份私有拷贝，而每个程序代码都可能做一份私有拷贝，这样就存在着多份一样的对象拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSArray *arr1 = [[NSArray alloc] init];</span><br><span class="line">NSArray *arr2 = [[NSArray alloc] init];</span><br><span class="line">NSArray *arr3 = @[];</span><br><span class="line">NSArray *arr4 = @[];</span><br><span class="line">NSArray *arr5 = @[@1];</span><br></pre></td></tr></table></figure>
+<p>对于上面的arr1~arr4，打印可见：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Printing description of arr1:</span><br><span class="line">&lt;__NSArray0 0x100704db0&gt;(</span><br><span class="line">)</span><br><span class="line">Printing description of arr2:</span><br><span class="line">&lt;__NSArray0 0x100704db0&gt;(</span><br><span class="line">)</span><br><span class="line">Printing description of arr3:</span><br><span class="line">&lt;__NSArray0 0x100704db0&gt;(</span><br><span class="line">)</span><br><span class="line">Printing description of arr4:</span><br><span class="line">&lt;__NSArray0 0x100704db0&gt;(</span><br><span class="line">)</span><br><span class="line">Printing description of arr5:</span><br><span class="line">&lt;__NSSingleObjectArrayI 0x10050cc00&gt;(</span><br><span class="line">1</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>arr1~arr4 内存地址是一样的，由此可见，Foundation对不可变版本的空数组进行了优化，使它们指向同一个静态对象。不仅是NSArray，Foundation中如<code>NSString</code>, <code>NSDictionary</code>, <code>NSSet</code>等区分可变和不可变版本的类，空实例都是静态对象（NSString的空实例对象是常量区的<code>@&quot;&quot;</code>）。</p>
+<h5 id="NAArray类簇"><a href="#NAArray类簇" class="headerlink" title="NAArray类簇"></a>NAArray类簇</h5><blockquote>
+<p>Class Clusters（类簇）是<code>抽象工厂</code>模式在iOS下的一种实现，众多常用类，如<code>NSString</code>，<code>NSArray</code>，<code>NSDictionary</code>，<code>NSNumber</code>都运作在这一模式下，它是接口简单性和扩展性的权衡体现，在我们完全不知情的情况下，偷偷隐藏了很多具体的实现类，只暴露出简单的接口。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id obj1 = [NSArray alloc]; // __NSPlacehodlerArray *</span><br><span class="line">id obj2 = [NSMutableArray alloc];  // __NSPlacehodlerArray *</span><br><span class="line">id obj3 = [obj1 init];  // __NSArrayI *</span><br><span class="line">id obj4 = [obj2 init];  // __NSArrayM *</span><br></pre></td></tr></table></figure>
+<p>这里的I和M指的是Immutable和Mutable。obj1和obj2这两个中间对象并没有储存任何信息，那它init的时候，怎么去区别返回的是NSArray还是NSMutableArray？</p>
+<p>这里引用一下：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&gt; static __NSPlacehodlerArray *GetPlaceholderForNSArray() &#123;</span><br><span class="line">&gt;     static __NSPlacehodlerArray *instanceForNSArray;</span><br><span class="line">&gt;     if (!instanceForNSArray) &#123;</span><br><span class="line">&gt;         instanceForNSArray = [[__NSPlacehodlerArray alloc] init];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     return instanceForNSArray;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br><span class="line">&gt; static __NSPlacehodlerArray *GetPlaceholderForNSMutableArray() &#123;</span><br><span class="line">&gt;     static __NSPlacehodlerArray *instanceForNSMutableArray;</span><br><span class="line">&gt;     if (!instanceForNSMutableArray) &#123;</span><br><span class="line">&gt;         instanceForNSMutableArray = [[__NSPlacehodlerArray alloc] init];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     return instanceForNSMutableArray;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; // NSArray实现</span><br><span class="line">&gt; + (id)alloc &#123;</span><br><span class="line">&gt;     if (self == [NSArray class]) &#123;</span><br><span class="line">&gt;         return GetPlaceholderForNSArray()</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; // NSMutableArray实现</span><br><span class="line">&gt; + (id)alloc &#123;</span><br><span class="line">&gt;     if (self == [NSMutableArray class]) &#123;</span><br><span class="line">&gt;         return GetPlaceholderForNSMutableArray()</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; // __NSPlacehodlerArray实现</span><br><span class="line">&gt; - (id)init &#123;</span><br><span class="line">&gt;     if (self == GetPlaceholderForNSArray()) &#123;</span><br><span class="line">&gt;         self = [[__NSArrayI alloc] init];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     else if (self == GetPlaceholderForNSMutableArray()) &#123;</span><br><span class="line">&gt;         self = [[__NSArrayM alloc] init];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     return self;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>大概就是这样，去区别NSArray和NSMutableArray。</p>
+<h5 id="Copy-与-MutableCopy"><a href="#Copy-与-MutableCopy" class="headerlink" title="Copy 与 MutableCopy"></a>Copy 与 MutableCopy</h5><h6 id="Copy-copy特性要求拷贝传入的对象，并将新对象赋给实例变量。"><a href="#Copy-copy特性要求拷贝传入的对象，并将新对象赋给实例变量。" class="headerlink" title="Copy: copy特性要求拷贝传入的对象，并将新对象赋给实例变量。"></a>Copy: copy特性要求拷贝传入的对象，并将新对象赋给实例变量。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@property (copy) NSString *lastName;</span><br><span class="line">这样声明属性等同于:</span><br><span class="line">- (void)setLastName:(NSString *)d &#123;</span><br><span class="line">  lastName = [d copy];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有些类有特定的子类，这些子类是可以修改的，这种类型的对象最适合使用copy特性。例如NSString，就有NSMutableString的子类，而向setLastName: 方法传入NSMutableString对象是有效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Test *atest = [[Test alloc] init];</span><br><span class="line">NSMutableString *string = [[NSMutableString alloc] initWithString:@&quot;lalala&quot;];</span><br><span class="line">[atest setLala:string];</span><br></pre></td></tr></table></figure>
+<p>因为setLastNameL:的方法会拷贝传入的对象，所以修改string不会对实例变量产生影响。</p>
+<h5 id="如果传入的对象不是可修改的呢？"><a href="#如果传入的对象不是可修改的呢？" class="headerlink" title="##如果传入的对象不是可修改的呢？"></a>##如果传入的对象不是可修改的呢？</h5><p>对于不可修改的对象进行复制，好像是在做无用功，NSObject的copy方法其实仅仅是调用copyWithZone: , 并将nil作为实参传入。不可修改的类通常会覆盖copyWithZone:方法，已优化拷贝过程。</p>
+<p>以NSString为例，它的copyWithZone：方法的实例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (id)copyWithZone:(NSZone *)z &#123;</span><br><span class="line">	return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说NSString对象并不会拷贝出一个新的对象。</p>
+<p>有些类会有两个版本：一个是可以修改的，另一个是不可修改的。无论哪个版本，copy只会返回不可修改的版本，例如NSMutableString的copy方法会返回NSString实例，如果要拷贝出可以修改的版本，就要用到mutableCopy方法。</p>
+<p>Objective-C并没有提供MutableCopy这样的特性。你要实现该方法，就必须自己编写代码实现。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者: <a href="http://yoursite.com">KkWeen</a>
-            <p>原文链接: <a href="http://yoursite.com/2017/06/29/FrameModel/">http://yoursite.com/2017/06/29/FrameModel/</a>
-            <p>发表日期: <a href="http://yoursite.com/2017/06/29/FrameModel/">June 29th 2017, 4:20:44</a>
+            <p>原文链接: <a href="http://yoursite.com/2018/07/27/MutableCopy/">http://yoursite.com/2018/07/27/MutableCopy/</a>
+            <p>发表日期: <a href="http://yoursite.com/2018/07/27/MutableCopy/">July 27th 2018, 10:27:39</a>
             <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -412,17 +432,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2017/07/14/Analysis/" title= Analysis >
-                    <div class="nextTitle">Analysis</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2017/06/25/代理模式/" title= 代理模式 >
-                    <div class="prevTitle">代理模式</div>
+                <a href= "/2018/07/15/关于UICollectionView/" title= 关于UICollectionView >
+                    <div class="prevTitle">关于UICollectionView</div>
                 </a>
             
         </li>
@@ -525,7 +540,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#MutableCopy"><span class="toc-number">1.</span> <span class="toc-text">MutableCopy</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#不可修改对象"><span class="toc-number">1.1.</span> <span class="toc-text">##不可修改对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NAArray类簇"><span class="toc-number">1.2.</span> <span class="toc-text">NAArray类簇</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Copy-与-MutableCopy"><span class="toc-number">1.3.</span> <span class="toc-text">Copy 与 MutableCopy</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Copy-copy特性要求拷贝传入的对象，并将新对象赋给实例变量。"><span class="toc-number">1.3.1.</span> <span class="toc-text">Copy: copy特性要求拷贝传入的对象，并将新对象赋给实例变量。</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#如果传入的对象不是可修改的呢？"><span class="toc-number">1.4.</span> <span class="toc-text">##如果传入的对象不是可修改的呢？</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
